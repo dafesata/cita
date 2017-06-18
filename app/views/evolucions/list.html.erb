@@ -1,0 +1,46 @@
+<div class="ui two column left aligned grid ">
+
+<%if flash[:notice]%>
+<div class="ui warning message">
+<div class="header">Notificacion</div>
+<p><%= notice %></p>
+</div>
+<% end %>
+
+<div class="one wide column"></div>
+<div class="column">
+<h1>Listado General de Evoluciones</h1>
+
+<table class="ui single line celled table">
+  <thead>
+    <tr>
+       <th>Fecha Historia</th>
+      <th>Identificacion Paciente</th>
+      <th>Nombre Paciente</th>      
+      <th>Nombre Profesional</th>
+      <th>Especialidad</th>   
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @evolucions.each do |evolucion| %>
+      <tr>
+        <td><%= evolucion.created_at.to_formatted_s(:rfc822) %></td>
+        <td><%= evolucion.paciente_id %></td>
+        <td><%= Paciente.where(numero_id: evolucion.paciente_id).first.persona %></td>
+        <td><%= Profesional.where(numero_id: evolucion.profesional_id).first.persona %></td>        
+        <td><%= Especialidad.where(especialidad_id: evolucion.especialidad_id).select(:nombre).first.nombre %></td>          
+        <td><%= link_to 'Ver', evolucion %></td>
+        <td><%= link_to 'Editar', edit_evolucion_path(evolucion) %></td>
+        <td><%= link_to 'Eliminar', evolucion, method: :delete, data: { confirm: '¿Seguro desea eliminar esta evolucion?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Atras', evolucions_path %>
+</div>
+</div>

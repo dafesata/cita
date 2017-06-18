@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  nombregenerico: MyString
+  formafarmaceutica: MyString
+  concentracion: MyString
+  res008: 1
+  res029: 1
+  res5521: 1
+  res5926: 1
+  res5592: 1
+
+two:
+  codigo: MyString
+  nombregenerico: MyString
+  formafarmaceutica: MyString
+  concentracion: MyString
+  res008: 1
+  res029: 1
+  res5521: 1
+  res5926: 1
+  res5592: 1

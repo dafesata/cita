@@ -1,0 +1,318 @@
+<div class="ui two column left aligned grid ">
+<div class="one wide column"></div>
+  <div class="column">
+
+<%if flash[:notice]%>
+<div class="ui success message">
+<div class="header">Formulario Completado</div>
+<p><%= notice %></p>
+</div>
+<% end %>
+
+<p>
+  <strong>Paciente:</strong>
+  <%= @historium.paciente_id %>
+</p>
+
+<p>
+  <strong>Paciente Nombre:</strong>
+  <%= Paciente.where(numero_id: @historium.paciente_id).first.persona%>
+</p>
+
+<p>
+  <strong>Profesional:</strong>
+  <%= @historium.profesional_id %>
+</p>
+
+<p>
+  <strong>Profesional Nombre:</strong>
+  <%= Profesional.where(numero_id: @historium.profesional_id).first.persona%>
+</p>
+
+<p>
+  <strong>Especialidad:</strong>
+  <%= @historium.especialidad_id %>
+</p>
+
+<p>
+  <strong>Especialidad nombre:</strong>
+  <%= Especialidad.where(especialidad_id: @historium.especialidad_id).select(:nombre).first.nombre %>
+</p>
+
+<p>
+  <strong>Acompañante:</strong>
+  <%= @historium.acompañante %>
+</p>
+
+<p>
+  <strong>Parentesco:</strong>
+  <%= @historium.parentesco %>
+</p>
+
+<p>
+  <strong>Motivo:</strong>
+  <%= @historium.motivo %>
+</p>
+
+<p>
+  <strong>Enfermedad Actual:</strong>
+  <%= @historium.eactual %>
+</p>
+
+<p>
+  <strong>Antecedentes Familiares:</strong>
+  <%= @historium.afamiliar %>
+</p>
+
+<p>
+  <strong>ANTECEDENTES PERSONALES</strong>
+  
+</p>
+
+<p>
+  <strong>Antecedentes Ginecologicos:</strong>
+  <%= @historium.aginecologicos %>
+</p>
+
+<p>
+  <strong>Antecedentes Obstetricos:</strong>
+  <%= @historium.aobstetricos %>
+</p>
+
+<p>
+  <strong>Antecedentes Patologicos:</strong>
+  <%= @historium.apatologicos %>
+</p>
+
+<p>
+  <strong>Antecedentes Quirurgicos:</strong>
+  <%= @historium.aquirurgicos %>
+</p>
+
+<p>
+  <strong>Antecedentes Psicosociales:</strong>
+  <%= @historium.apsicosociales %>
+</p>
+
+<p>
+  <strong>Peso:</strong>
+  <%= @historium.peso %>
+</p>
+
+<p>
+  <strong>Talla:</strong>
+  <%= @historium.talla %>
+</p>
+
+<p>
+  <strong>Tension Arterial:</strong>
+  <%= @historium.tensionarterial %>
+</p>
+
+<p>
+  <strong>Temperatura:</strong>
+  <%= @historium.temp %>
+</p>
+
+<p>
+  <strong>Aspecto General:</strong>
+  <%= @historium.ageneral %>
+</p>
+
+<p>
+  <strong>Craneo y Cabeza:</strong>
+  <%= @historium.craneocabeza %>
+</p>
+
+<p>
+  <strong>Cuello:</strong>
+  <%= @historium.cuello %>
+</p>
+
+<p>
+  <strong>Organos de los Sentidos:</strong>
+  <%= @historium.osentidos %>
+</p>
+
+<p>
+  <strong>Torax:</strong>
+  <%= @historium.torax %>
+</p>
+
+<p>
+  <strong>Senos:</strong>
+  <%= @historium.seno %>
+</p>
+
+<p>
+  <strong>Cardiaco:</strong>
+  <%= @historium.cardiaco %>
+</p>
+
+<p>
+  <strong>Respiratorio:</strong>
+  <%= @historium.respiratorio %>
+</p>
+
+<p>
+  <strong>Abdomen:</strong>
+  <%= @historium.abdomen %>
+</p>
+
+<p>
+  <strong>Ginecologico:</strong>
+  <%= @historium.ginecologico %>
+</p>
+
+<p>
+  <strong>Urinario:</strong>
+  <%= @historium.urinario %>
+</p>
+
+<p>
+  <strong>Osteoauricular:</strong>
+  <%= @historium.osteoauricular %>
+</p>
+
+<p>
+  <strong>Neurologico:</strong>
+  <%= @historium.neurologico %>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 1:</strong>
+  <%= Cie10.where(codigo: @historium.idiagnostica1).first.descripcion%>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 2:</strong>
+  
+  <%=  Cie10.where(codigo: @historium.idiagnostica2).first.descripcion  if(!@historium.idiagnostica2.blank?) %>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 3:</strong>
+  <%= Cie10.where(codigo: @historium.idiagnostica3).first.descripcion if(!@historium.idiagnostica3.blank?) %>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 4:</strong>
+  <%= Cie10.where(codigo: @historium.idiagnostica4).first.descripcion if(!@historium.idiagnostica4.blank?)%>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 5:</strong>
+  <%= Cie10.where(codigo: @historium.idiagnostica5).first.descripcion if(!@historium.idiagnostica5.blank?)%>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 6:</strong>
+  <%= Cie10.where(codigo: @historium.idiagnostica6).first.descripcion if(!@historium.idiagnostica6.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 1:</strong>
+  <%= Procpo.where(codigo: @historium.adiagnosticas1).first.nombre if(!@historium.adiagnosticas1.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 2:</strong>
+  <%= Procpo.where(codigo: @historium.adiagnosticas2).first.nombre if(!@historium.adiagnosticas2.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 3:</strong>
+  <%= Procpo.where(codigo: @historium.adiagnosticas3).first.nombre if(!@historium.adiagnosticas3.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 4:</strong>
+  <%= Procpo.where(codigo: @historium.adiagnosticas4).first.nombre if(!@historium.adiagnosticas4.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 5:</strong>
+  <%= Procpo.where(codigo: @historium.adiagnosticas5).first.nombre if(!@historium.adiagnosticas5.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 6:</strong>
+  <%= Procpo.where(codigo: @historium.adiagnosticas6).first.nombre if(!@historium.adiagnosticas6.blank?)%>
+</p>
+
+<p>
+  <strong>Tratamiento 1:</strong>
+  <%= Medpo.where(codigo: @historium.tratamiento1).first.formula if(!@historium.tratamiento1.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 1:</strong>
+  <%= @historium.dosis1 %>
+</p>
+
+<p>
+  <strong>Tratamiento 2:</strong>
+  <%= Medpo.where(codigo: @historium.tratamiento2).first.formula if(!@historium.tratamiento2.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 2:</strong>
+  <%= @historium.dosis2 %>
+</p>
+
+<p>
+  <strong>Tratamiento 3:</strong>
+  <%= Medpo.where(codigo: @historium.tratamiento3).first.formula if(!@historium.tratamiento3.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 3:</strong>
+  <%= @historium.dosis3 %>
+</p>
+
+<p>
+  <strong>Tratamiento 4:</strong>
+  <%= Medpo.where(codigo: @historium.tratamiento4).first.formula if(!@historium.tratamiento4.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 4:</strong>
+  <%= @historium.dosis4 %>
+</p>
+
+<p>
+  <strong>Tratamiento 5:</strong>
+  <%= Medpo.where(codigo: @historium.tratamiento5).first.formula if(!@historium.tratamiento5.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 5:</strong>
+  <%= @historium.dosis5 %>
+</p>
+
+<p>
+  <strong>Tratamiento 6:</strong>
+  <%= Medpo.where(codigo: @historium.tratamiento6).first.formula if(!@historium.tratamiento6.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 6:</strong>
+  <%= @historium.dosis6 %>
+</p>
+
+<p>
+  <strong>Interconsulta:</strong>
+  <%= @historium.interconsulta1 %>
+</p>
+
+
+
+ <%= link_to 'Editar', edit_historium_path(@historium), class: "ui button"%>|
+ <%= link_to 'Regresar', historia_path, class: "ui button"%>
+
+
+    
+  
+  </div>
+  
+</div>

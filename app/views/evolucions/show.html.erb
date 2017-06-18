@@ -1,0 +1,202 @@
+<div class="ui two column left aligned grid ">
+<div class="one wide column"></div>
+  <div class="column">
+
+<%if flash[:notice]%>
+<div class="ui success message">
+<div class="header">Formulario Completado</div>
+<p><%= notice %></p>
+</div>
+<% end %>
+
+<p>
+  <strong>Paciente:</strong>
+  <%= @evolucion.paciente_id %>
+</p>
+
+<p>
+  <strong>Paciente Nombre:</strong>
+  <%= Paciente.where(numero_id: @evolucion.paciente_id).first.persona%>
+</p>
+
+<p>
+  <strong>Profesional:</strong>
+  <%= @evolucion.profesional_id %>
+</p>
+
+<p>
+  <strong>Profesional Nombre:</strong>
+  <%= Profesional.where(numero_id: @evolucion.profesional_id).first.persona%>
+</p>
+
+<p>
+  <strong>Especialidad:</strong>
+  <%= @evolucion.especialidad_id %>
+</p>
+
+<p>
+  <strong>Especialidad nombre:</strong>
+  <%= Especialidad.where(especialidad_id: @evolucion.especialidad_id).select(:nombre).first.nombre %>
+</p>
+<p>
+  <strong>Peso:</strong>
+  <%= @evolucion.peso %>
+</p>
+
+<p>
+  <strong>Talla:</strong>
+  <%= @evolucion.talla %>
+</p>
+
+<p>
+  <strong>Tensionarterial:</strong>
+  <%= @evolucion.tensionarterial %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @evolucion.fecha %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @evolucion.descripcion %>
+</p>
+<p>
+  <strong>Impresion Diagnostica 1:</strong>
+  <%= Cie10.where(codigo: @evolucion.idiagnostica1).first.descripcion %>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 2:</strong>
+  
+  <%=  Cie10.where(codigo: @evolucion.idiagnostica2).first.descripcion  if(!@evolucion.idiagnostica2.blank?) %>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 3:</strong>
+  <%= Cie10.where(codigo: @evolucion.idiagnostica3).first.descripcion if(!@evolucion.idiagnostica3.blank?) %>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 4:</strong>
+  <%= Cie10.where(codigo: @evolucion.idiagnostica4).first.descripcion if(!@evolucion.idiagnostica4.blank?)%>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 5:</strong>
+  <%= Cie10.where(codigo: @evolucion.idiagnostica5).first.descripcion if(!@evolucion.idiagnostica5.blank?)%>
+</p>
+
+<p>
+  <strong>Impresion Diagnostica 6:</strong>
+  <%= Cie10.where(codigo: @evolucion.idiagnostica6).first.descripcion if(!@evolucion.idiagnostica6.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 1:</strong>
+  <%= Procpo.where(codigo: @evolucion.adiagnosticas1).first.nombre if(!@evolucion.adiagnosticas1.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 2:</strong>
+  <%= Procpo.where(codigo: @evolucion.adiagnosticas2).first.nombre if(!@evolucion.adiagnosticas2.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 3:</strong>
+  <%= Procpo.where(codigo: @evolucion.adiagnosticas3).first.nombre if(!@evolucion.adiagnosticas3.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 4:</strong>
+  <%= Procpo.where(codigo: @evolucion.adiagnosticas4).first.nombre if(!@evolucion.adiagnosticas4.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 5:</strong>
+  <%= Procpo.where(codigo: @evolucion.adiagnosticas5).first.nombre if(!@evolucion.adiagnosticas5.blank?)%>
+</p>
+
+<p>
+  <strong>Ayudas Diagnosticas y/o Procedimientos 6:</strong>
+  <%= Procpo.where(codigo: @evolucion.adiagnosticas6).first.nombre if(!@evolucion.adiagnosticas6.blank?)%>
+</p>
+
+<p>
+  <strong>Tratamiento 1:</strong>
+  <%= Medpo.where(codigo: @evolucion.tratamiento1).first.formula if(!@evolucion.tratamiento1.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 1:</strong>
+  <%= @evolucion.dosis1 %>
+</p>
+
+<p>
+  <strong>Tratamiento 2:</strong>
+  <%= Medpo.where(codigo: @evolucion.tratamiento2).first.formula if(!@evolucion.tratamiento2.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 2:</strong>
+  <%= @evolucion.dosis2 %>
+</p>
+
+<p>
+  <strong>Tratamiento 3:</strong>
+  <%= Medpo.where(codigo: @evolucion.tratamiento3).first.formula if(!@evolucion.tratamiento3.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 3:</strong>
+  <%= @evolucion.dosis3 %>
+</p>
+
+<p>
+  <strong>Tratamiento 4:</strong>
+  <%= Medpo.where(codigo: @evolucion.tratamiento4).first.formula if(!@evolucion.tratamiento4.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 4:</strong>
+  <%= @evolucion.dosis4 %>
+</p>
+
+<p>
+  <strong>Tratamiento 5:</strong>
+  <%= Medpo.where(codigo: @evolucion.tratamiento5).first.formula if(!@evolucion.tratamiento5.blank?)%>
+</p>
+
+<p>
+  <strong>Dosis 5:</strong>
+  <%= @evolucion.dosis5 %>
+</p>
+
+<p>
+  <strong>Tratamiento 6:</strong>
+  <%= Medpo.where(codigo: @evolucion.tratamiento6).first.formula if(!@evolucion.tratamiento6.blank?)%>
+</p>
+
+
+<p>
+  <strong>Dosis 6:</strong>
+  <%= @evolucion.dosis6 %>
+</p>
+
+<p>
+  <strong>Interconsulta:</strong>
+  <%= @evolucion.interconsulta1 %>
+</p>
+
+
+
+ <%= link_to 'Editar', edit_evolucion_path(@evolucion), class: "ui button"%>|
+ <%= link_to 'Regresar', evolucions_path, class: "ui button"%>
+
+
+    
+  
+  </div>
+  
+</div>

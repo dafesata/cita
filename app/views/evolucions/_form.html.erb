@@ -1,0 +1,620 @@
+<%= form_for(@evolucion, html:{class: "ui form evolucion-form"}) do |f| %>
+
+  <% if @evolucion.errors.any? %>
+  <div class="ui negative message">
+    <div class="header">
+      Tiene <%= pluralize(@evolucion.errors.count, "error") %>: 
+      </div>
+      <ul class="list">      
+        <% @evolucion.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>      
+      </ul>
+      </div>
+   
+    
+  <% end %>
+
+ <div class="five wide required field">
+    <%= label_tag :search_paciente_evolucion, "Identificacion Paciente" %>
+    <div class="ui search search_paciente_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_paciente_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+  <div class="five wide required field">    
+    <%= f.label :paciente_id, "Identificacion Paciente" %>
+    <%= f.number_field :paciente_id%>
+  </div>
+
+  <div class="six wide field">
+    <%= label_tag :primer_nombre, "Nombres Paciente" %>   
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= text_field_tag :primer_nombre,Persona.where(numero_id: f.object.paciente_id,numero_type: "Paciente" ).first.primer_nombre,:disabled => true%>  
+    <%= text_field_tag :segundo_nombre,Persona.where(numero_id: f.object.paciente_id,numero_type: "Paciente" ).first.segundo_nombre,:disabled => true%>  
+    <%= text_field_tag :primer_apellido,Persona.where(numero_id: f.object.paciente_id,numero_type: "Paciente" ).first.primer_apellido,:disabled => true%> 
+    <%= text_field_tag :segundo_apellido,Persona.where(numero_id: f.object.paciente_id,numero_type: "Paciente" ).first.segundo_apellido,:disabled => true%>  
+    <%else %>     
+     <%= text_field_tag :primer_nombre,"",:disabled => true%>  
+    <%= text_field_tag :segundo_nombre,"",:disabled => true%>  
+    <%= text_field_tag :primer_apellido,"",:disabled => true%> 
+    <%= text_field_tag :segundo_apellido,"",:disabled => true%>  
+    <%end %>
+  </div>
+  </div>
+
+  <div class="five wide required field">
+    <%= label_tag :search_profesional_evolucion, "Identificacion Profesional" %>
+    <div class="ui search search_profesional_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_profesional_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+  <div class="five wide required field">    
+    <%= f.label :profesional_id, "Profesional" %>
+    <%= f.number_field :profesional_id %>
+  </div>
+
+   <div class="six wide field">
+    <%= label_tag :primer_nombre_profesional, "Nombres Profesional" %>   
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= text_field_tag :primer_nombre_profesional,Persona.where(numero_id: f.object.profesional_id,numero_type: "Profesional" ).first.primer_nombre,:disabled => true%>  
+    <%= text_field_tag :segundo_nombre_profesional,Persona.where(numero_id: f.object.profesional_id,numero_type: "Profesional" ).first.segundo_nombre,:disabled => true%>  
+    <%= text_field_tag :primer_apellido_profesional,Persona.where(numero_id: f.object.profesional_id,numero_type: "Profesional" ).first.primer_apellido,:disabled => true%> 
+    <%= text_field_tag :segundo_apellido_profesional,Persona.where(numero_id: f.object.profesional_id,numero_type: "Profesional" ).first.segundo_apellido,:disabled => true%>  
+    <%else %>     
+     <%= text_field_tag :primer_nombre_profesional,"",:disabled => true%>  
+    <%= text_field_tag :segundo_nombre_profesional,"",:disabled => true%>  
+    <%= text_field_tag :primer_apellido_profesional,"",:disabled => true%> 
+    <%= text_field_tag :segundo_apellido_profesional,"",:disabled => true%>  
+    <%end %>
+  </div>
+  </div>
+
+ <div class="six wide field">
+    <%= label_tag :nombre_especialidad, "Especialidad" %>   
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.number_field :especialidad_id%>
+    <%= text_field_tag :nombre_especialidad,Especialidad.where(especialidad_id: f.object.especialidad_id).first.nombre,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.number_field :especialidad_id %>
+     <%= text_field_tag :nombre_especialidad,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+
+  <div class="six wide field">
+    <%= f.label :peso %>
+    <%= f.text_field :peso %>
+  </div>
+
+  <div class="six wide field">
+    <%= f.label :talla %>
+    <%= f.text_field :talla %>
+  </div>
+
+  <div class="six wide field">
+    <%= f.label :tensionarterial %>
+    <%= f.text_field :tensionarterial %>
+  </div>
+
+  <div class="six wide field">
+    <%= f.label :fecha %>
+    <%= f.date_select :fecha %>
+  </div>
+
+  <div class="six wide field">
+    <%= f.label :descripcion %>
+    <%= f.text_area :descripcion %>
+  </div>
+
+  
+ <div class="five wide required field">
+    <%= label_tag :search_idiagnostica1_evolucion, "Impresion Diagnostica 1" %>
+    <div class="ui search search_idiagnostica1_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_idiagnostica1_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :idiagnostica1, :disabled => true %>
+    <%= text_field_tag :idiagnostica1,Cie10.where(codigo: f.object.idiagnostica1).first.descripcion,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :idiagnostica1  %>
+     <%= text_field_tag :idiagnostica1,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+   <div class="five wide required field">
+    <%= label_tag :search_idiagnostica2_evolucion, "Impresion Diagnostica 2" %>
+    <div class="ui search search_idiagnostica2_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_idiagnostica2_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :idiagnostica2, :disabled => true %>
+    <%= text_field_tag :idiagnostica2,Cie10.where(codigo: f.object.idiagnostica2).first.descripcion,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :idiagnostica2, :disabled => true  %>
+     <%= text_field_tag :idiagnostica2,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+   <div class="five wide required field">
+    <%= label_tag :search_idiagnostica3_evolucion, "Impresion Diagnostica 3" %>
+    <div class="ui search search_idiagnostica3_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_idiagnostica3_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :idiagnostica3, :disabled => true %>
+    <%= text_field_tag :idiagnostica3,Cie10.where(codigo: f.object.idiagnostica3).first.descripcion,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :idiagnostica3, :disabled => true  %>
+     <%= text_field_tag :idiagnostica3,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+ <div class="five wide required field">
+    <%= label_tag :search_idiagnostica4_evolucion, "Impresion Diagnostica 4" %>
+    <div class="ui search search_idiagnostica4_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_idiagnostica4_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :idiagnostica4, :disabled => true %>
+    <%= text_field_tag :idiagnostica4,Cie10.where(codigo: f.object.idiagnostica4).first.descripcion,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :idiagnostica4, :disabled => true  %>
+     <%= text_field_tag :idiagnostica4,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+ <div class="five wide required field">
+    <%= label_tag :search_idiagnostica5_evolucion, "Impresion Diagnostica 5" %>
+    <div class="ui search search_idiagnostica5_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_idiagnostica5_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :idiagnostica5, :disabled => true %>
+    <%= text_field_tag :idiagnostica5,Cie10.where(codigo: f.object.idiagnostica5).first.descripcion,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :idiagnostica5, :disabled => true  %>
+     <%= text_field_tag :idiagnostica5,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+ <div class="five wide required field">
+    <%= label_tag :search_idiagnostica6_evolucion, "Impresion Diagnostica 6" %>
+    <div class="ui search search_idiagnostica6_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_idiagnostica6_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :idiagnostica6, :disabled => true %>
+    <%= text_field_tag :idiagnostica6,Cie10.where(codigo: f.object.idiagnostica6).first.descripcion,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :idiagnostica6, :disabled => true  %>
+     <%= text_field_tag :idiagnostica6,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  
+
+  <div class="five wide required field">
+    <%= label_tag :search_adiagnosticas1_evolucion, "Ayudas Diagnosticas y/o Procedimientos 1" %>
+    <div class="ui search search_adiagnosticas1_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_adiagnosticas1_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :adiagnosticas1, :disabled => true %>
+    <%= text_field_tag :adiagnosticas1,Procpo.where(codigo: f.object.adiagnosticas1).first.nombre,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :adiagnosticas1, :disabled => true  %>
+     <%= text_field_tag :adiagnosticas1,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+<div class="five wide required field">
+    <%= label_tag :search_adiagnosticas2_evolucion, "Ayudas Diagnosticas y/o Procedimientos 2" %>
+    <div class="ui search search_adiagnosticas2_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_adiagnosticas2_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :adiagnosticas2, :disabled => true %>
+    <%= text_field_tag :adiagnosticas2,Procpo.where(codigo: f.object.adiagnosticas2).first.nombre,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :adiagnosticas2, :disabled => true  %>
+     <%= text_field_tag :adiagnosticas2,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  <div class="five wide required field">
+    <%= label_tag :search_adiagnosticas3_evolucion, "Ayudas Diagnosticas y/o Procedimientos 3" %>
+    <div class="ui search search_adiagnosticas3_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_adiagnosticas3_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :adiagnosticas3, :disabled => true %>
+    <%= text_field_tag :adiagnosticas3,Procpo.where(codigo: f.object.adiagnosticas3).first.nombre,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :adiagnosticas3, :disabled => true  %>
+     <%= text_field_tag :adiagnosticas3,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  <div class="five wide required field">
+    <%= label_tag :search_adiagnosticas4_evolucion, "Ayudas Diagnosticas y/o Procedimientos 4" %>
+    <div class="ui search search_adiagnosticas4_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_adiagnosticas4_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :adiagnosticas4, :disabled => true %>
+    <%= text_field_tag :adiagnosticas4,Procpo.where(codigo: f.object.adiagnosticas4).first.nombre,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :adiagnosticas4, :disabled => true  %>
+     <%= text_field_tag :adiagnosticas4,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  <div class="five wide required field">
+    <%= label_tag :search_adiagnosticas5_evolucion, "Ayudas Diagnosticas y/o Procedimientos 5" %>
+    <div class="ui search search_adiagnosticas5_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_adiagnosticas5_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :adiagnosticas5, :disabled => true %>
+    <%= text_field_tag :adiagnosticas5,Procpo.where(codigo: f.object.adiagnosticas5).first.nombre,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :adiagnosticas5, :disabled => true  %>
+     <%= text_field_tag :adiagnosticas5,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  <div class="five wide required field">
+    <%= label_tag :search_adiagnosticas6_evolucion, "Ayudas Diagnosticas y/o Procedimientos 6" %>
+    <div class="ui search search_adiagnosticas6_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_adiagnosticas6_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :adiagnosticas6, :disabled => true %>
+    <%= text_field_tag :adiagnosticas6,Procpo.where(codigo: f.object.adiagnosticas6).first.nombre,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :adiagnosticas6, :disabled => true  %>
+     <%= text_field_tag :adiagnosticas6,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  
+<div class="five wide required field">
+    <%= label_tag :search_tratamiento1_evolucion, "Tratamiento 1" %>
+    <div class="ui search search_tratamiento1_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_tratamiento1_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :tratamiento1, :disabled => true %>
+    <%= text_field_tag :tratamiento1,Medpo.where(codigo: f.object.tratamiento1).first.nombregenerico,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :tratamiento1, :disabled => true  %>
+     <%= text_field_tag :tratamiento1,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+  <div class="six wide field">
+    <%= f.label :dosis1 %>
+    <%= f.text_field :dosis1 %>
+  </div>
+
+<div class="five wide required field">
+    <%= label_tag :search_tratamiento2_evolucion, "Tratamiento 2" %>
+    <div class="ui search search_tratamiento2_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_tratamiento2_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :tratamiento2, :disabled => true %>
+    <%= text_field_tag :tratamiento2,Medpo.where(codigo: f.object.tratamiento2).first.nombregenerico,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :tratamiento2, :disabled => true  %>
+     <%= text_field_tag :tratamiento2,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  <div class="six wide field">
+    <%= f.label :dosis2 %>
+    <%= f.text_field :dosis2 %>
+  </div>
+
+  <div class="five wide required field">
+    <%= label_tag :search_tratamiento3_evolucion, "Tratamiento 3" %>
+    <div class="ui search search_tratamiento3_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_tratamiento3_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :tratamiento3, :disabled => true %>
+    <%= text_field_tag :tratamiento3,Medpo.where(codigo: f.object.tratamiento3).first.nombregenerico,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :tratamiento3, :disabled => true  %>
+     <%= text_field_tag :tratamiento3,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  <div class="six wide field">
+    <%= f.label :dosis3 %>
+    <%= f.text_field :dosis3 %>
+  </div>
+
+
+  <div class="five wide required field">
+    <%= label_tag :search_tratamiento4_evolucion, "Tratamiento 4" %>
+    <div class="ui search search_tratamiento4_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_tratamiento4_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :tratamiento4, :disabled => true %>
+    <%= text_field_tag :tratamiento4,Medpo.where(codigo: f.object.tratamiento4).first.nombregenerico,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :tratamiento4, :disabled => true  %>
+     <%= text_field_tag :tratamiento4,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+  <div class="six wide field">
+    <%= f.label :dosis4 %>
+    <%= f.text_field :dosis4 %>
+  </div>
+
+  <div class="five wide required field">
+    <%= label_tag :search_tratamiento5_evolucion, "Tratamiento 5" %>
+    <div class="ui search search_tratamiento5_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_tratamiento5_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :tratamiento5, :disabled => true %>
+    <%= text_field_tag :tratamiento5,Medpo.where(codigo: f.object.tratamiento5).first.nombregenerico,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :tratamiento5, :disabled => true  %>
+     <%= text_field_tag :tratamiento5,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  <div class="six wide field">
+    <%= f.label :dosis5 %>
+    <%= f.text_field :dosis5 %>
+  </div>
+
+  <div class="five wide required field">
+    <%= label_tag :search_tratamiento6_evolucion, "Tratamiento 6" %>
+    <div class="ui search search_tratamiento6_evolucion">
+    <div class="ui icon input">
+        <%= text_field_tag "search_tratamiento6_evolucion","", class:"prompt"  %>
+        <i class="search icon"></i>
+      </div>
+    </div>     
+  </div>
+
+<div class="six wide field">
+    
+  <div class="nine wide inline fields">    
+    <%if f.object.persisted? %>    
+    <%= f.text_field :tratamiento6, :disabled => true %>
+    <%= text_field_tag :tratamiento6,Medpo.where(codigo: f.object.tratamiento6).first.nombregenerico,:disabled => true%>  
+    
+    <%else %>     
+    <%= f.text_field :tratamiento6, :disabled => true  %>
+     <%= text_field_tag :tratamiento6,"",:disabled => true%>  
+    
+    <%end %>
+  </div>
+  </div>
+
+  <div class="six wide field">
+    <%= f.label :dosis6 %>
+    <%= f.text_field :dosis6 %>
+  </div>
+
+  <div class="five wide required field">    
+    <%= f.label :interconsulta1, "Consulta y/o Interconsulta" %>
+    <%= f.text_area :interconsulta1 %>
+  </div>  
+
+
+  <div class="actions">
+    <div class="ui buttons">
+      <%= link_to 'Atras', request.referer, :class =>"ui button"%>
+       <div class="or" data-text="O"></div>
+      <%= f.submit "Guardar Evolucion", :class =>"ui positive button"  %>
+    </div>
+  </div>  
+<% end %>

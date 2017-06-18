@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  simbolo: MyString
+  descripcion: MyString
+  sexo: MyString
+  limiteinferior: 1
+  limitesuperior: 1
+  noafeccionppal: MyString
+  observaciones: MyString
+
+two:
+  codigo: MyString
+  simbolo: MyString
+  descripcion: MyString
+  sexo: MyString
+  limiteinferior: 1
+  limitesuperior: 1
+  noafeccionppal: MyString
+  observaciones: MyString

@@ -1,0 +1,50 @@
+<div class="ui two column left aligned grid ">
+
+<%if flash[:notice]%>
+<div class="ui warning message">
+<div class="header">Notificacion</div>
+<p><%= notice %></p>
+</div>
+<% end %>
+
+<div class="one wide column"></div>
+<div class="column">
+<h1>Listado General de Historias</h1>
+
+<table class="ui single line celled table">
+  <thead>
+    <tr>
+      <th>Fecha Historia</th>
+      <th>Identificacion Paciente</th>
+      <th>Nombre Paciente</th>      
+      <th>Nombre Profesional</th>
+      <th>Especialidad</th>      
+      
+     
+      <th colspan="4"> Opciones </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @historia.each do |historium| %>
+      <tr>
+        <td><%= historium.created_at.to_formatted_s(:rfc822) %></td>
+        <td><%= historium.paciente_id %></td>
+        <td><%= Paciente.where(numero_id: historium.paciente_id).first.persona %></td>
+        <td><%= Profesional.where(numero_id: historium.profesional_id).first.persona %></td>        
+        <td><%= Especialidad.where(especialidad_id: historium.especialidad_id).select(:nombre).first.nombre %></td>        
+       
+        <td><%= link_to 'Ver', historium %></td>
+        <td><%= link_to 'Editar', edit_historium_path(historium) %></td>
+        
+        <td><%= link_to 'Eliminar', historium, method: :delete, data: { confirm: '¿Esta seguro desea eliminar esta historia?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Atras', historia_path %>
+</div>
+</div>

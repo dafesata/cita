@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Histori") do |sheet|
+    sheet.add_row ["paciente", "profesional","Especialidad"]    
+    sheet.add_row [@historium.paciente_id , @historium.profesional_id ,@historium.especialidad_id ]
+    
+end
